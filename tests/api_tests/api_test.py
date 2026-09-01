@@ -88,7 +88,7 @@ class TestCar:
         '''
         Ми перевіряємо не існуючий айді машини і очікуємо, що повернется 404 помилка
         '''
-        car = CarModels(api)
+        car = CarModels(create_delete_car_v2[0])
         resp_get_car_by_id = car.get_car_by_id(
             item_id='123123123123',
             status_code=404
