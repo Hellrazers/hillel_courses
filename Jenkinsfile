@@ -39,7 +39,7 @@ pipeline {
                         -e USER_LOGIN="${params.USER_EMAIL}" \\
                         -e USER_PASSWORD="${params.USER_PASSWORD}" \\
                         ui-tests:latest \\
-                        pytest -m smoke --alluredir=allure-results --browser=${params.BROWSER} || true
+                        pytest -m ${params.MARKS} --alluredir=allure-results --browser=${params.BROWSER} || true
 
                     # Копіюємо результати з контейнера у воркспейс Jenkins
                     docker cp test_runner:/app/allure-results/. allure-results/
@@ -47,9 +47,6 @@ pipeline {
 
                     # Видаляємо контейнер після копіювання
                     docker rm -f test_runner
-
-                    echo "=== Extracted Allure files ==="
-                    ls -la allure-results
                 """
             }
         }
