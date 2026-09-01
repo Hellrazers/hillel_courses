@@ -1,0 +1,4 @@
+scoop install allure
+allure --version
+pytest --alluredir=allure-report
+allure serve allure-report

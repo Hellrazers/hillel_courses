@@ -1,0 +1,11 @@
+{
+    "id": 1,
+    "name": "Oleskii",
+    "age": null,
+    "has_kids": false,
+    "kids_name": [
+        "Ivan",
+        "Oleksii",
+        "Anna"
+    ]
+}
