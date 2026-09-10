@@ -5,7 +5,7 @@ import pytest
 from dotenv import load_dotenv
 from playwright.sync_api import expect
 
-from contract.car_models import CarModels
+from contract.car_models import CarModels, CarRequest
 
 load_dotenv()
 
@@ -113,3 +113,11 @@ class TestCar:
         assert resp_data.get('carBrandId') == payload_create_car.get('carBrandId')
         assert resp_data.get('carModelId') == payload_create_car.get('carModelId')
         assert resp_data.get('mileage') == payload_create_car.get('mileage')
+
+
+
+def test_get_all_cars_200(api_request):
+    api = CarRequest(api_request)
+
+    resp_get_all_cars = api.get_car()
+    print(resp_get_all_cars.json())

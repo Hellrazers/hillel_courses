@@ -4,6 +4,7 @@ import pytest
 from playwright.sync_api import Playwright, Request, APIRequestContext, expect
 
 from contract.car_models import CarModels
+from core.api_session import ApiSession
 
 # @pytest.fixture
 # def fixture_first():
@@ -34,6 +35,11 @@ def api(api_setup: APIRequestContext):
 
 
     yield api_setup
+
+@pytest.fixture()
+def api_request():
+    api = ApiSession()
+    return api
 
 
 @pytest.fixture()

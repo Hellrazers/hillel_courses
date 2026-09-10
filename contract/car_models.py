@@ -1,7 +1,11 @@
+import os
+
 import allure
+from dotenv import load_dotenv
 from playwright.sync_api import APIRequestContext
 
 from contract.preparing import logger_api
+from core.api_session import ApiSession
 
 
 class CarModels:
@@ -37,3 +41,15 @@ class CarModels:
             resp = self.api.delete(url=f'{self.path}/{item_id}', **kwargs)
             assert resp.status == status_code
             return resp
+
+
+load_dotenv()
+class CarRequest:
+    def __init__(self, api: ApiSession):
+        self.api = api
+        self.path = f'{os.getenv('BASIC_URL')}/api/cars'
+
+    def get_car(self, status_code: int = 200, **kwargs):
+        resp = self.api.get(url=self.path, **kwargs)
+        assert resp.status_code == status_code
+        return resp
