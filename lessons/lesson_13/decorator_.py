@@ -1,42 +1,46 @@
-#
-def first_function():
-    print('Hello')
-def second_function(fn):
-    fn()
-    print('Word')
 
-#
-# second_function(first_function)
+def fn_1():
+    return 'Hello'
+
+def fn_2(fn):
+    print(fn, 'word')
 
 
+fn_value = fn_1
 
-asd = first_function
-
-print(second_function(asd))
+fn_2(fn_value())
 
 
-def first_decorator(func):
+
+def first_deco(fn):
     def wrapper(*args, **kwargs):
-        print('Before call')
-        value = func(*args, **kwargs)
-        print('After call')
-        return value
+        print('--' * 80)
+        print('Before')
+        value_fn = fn(*args, **kwargs)
+        print('--' * 80)
+        print('value_fn:', value_fn)
+        return value_fn
     return wrapper
 
 
-@first_decorator
-def say_hello():
-    print('Hello, ' )
+@first_deco
+def fn_3():
+    return 'Hello'
 
 
-say_hello()
+fn_3()
 
+@first_deco
+def fn_4():
+    pass
 
-@first_decorator
-def counter(value_1, value_2):
-    sum_values = value_1 + value_2
-    print(f'Sum of {value_1} and {value_2} is {sum_values}')
-    return sum_values
+fn_4()
 
+@first_deco
+def fn_5(*args):
+    print(args)
+    return sum(args)
 
-# print(counter(value_1=4, value_2=5))
+list_values = list(range(1,4))
+
+fn_5(*list_values)

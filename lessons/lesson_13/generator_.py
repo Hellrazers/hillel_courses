@@ -1,21 +1,24 @@
 
-def say_hello():
-    return "Hello World"
 
-def generator():
-    yield "Hello World"
-    yield "Hello World2"
-    yield "Hello World3"
-    yield "Hello World4"
-
-print(say_hello())
-
-generator_call = generator()
-# print(next(generator_call))
-# print(next(generator_call))
-# print(next(generator_call))
+def new_func():
+    return 42
 
 
-for gen in generator_call:
-    print(gen)
+def new_func2(argument):
+    argument = argument + 1
+    yield argument
+    yield argument // 2
+    yield 2
+    yield 3
 
+
+value = new_func2(54)
+value_int = next(value)
+value_2 = value_int + 32
+print(value_2)
+
+value_int = next(value)
+value_2 = value_int +value_2
+print(value_2)
+print(next(value))
+print(next(value))

@@ -1,26 +1,59 @@
-
 list_1 = [1, 2, 3]
 
-#
-# for item in list_1:
-#     print(item)
-
-
 iter_1 = iter(list_1)
-# for item in iter_1:
-#     print(item)
 
-value = next(iter_1)
-value += 5
-print(value)
-print(next(iter_1))
-print(next(iter_1))
-list_2 = [[1], [2], [3]]
+# for i in list_1:
+#     print(i)
 
-iter_2 = iter(list_2)
+print('-'*80)
+# for i in iter_1:
+#     print(i)
 
-value_list_1 = next(iter_2)
-value_list_1.append(4)
+next(iter_1)
+next(iter_1)
+asd = next(iter_1)
+# next(iter_1)
+print(asd)
+asd += 5000
+
+list_1.append(asd)
+print(list_1)
 
 
-print(list_2)
+class Person:
+    def __init__(self):
+        self.__list_person = []
+        self.__len_person = 0
+
+    def add_persons(self, name, age):
+        person_to_add = {
+            'name' : name,
+            'age' : age
+        }
+        self.__list_person.append(person_to_add)
+
+    def __repr__(self):
+
+        return f'Person len {self.__len_person}: {self.__list_person}'
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.__len_person >= len(self.__list_person):
+            raise StopIteration
+        else:
+            # smth_to_return = self.__list_person[self.__len_person]
+            self.__len_person += 1
+            return self.__list_person[self.__len_person - 1]
+
+
+person = Person()
+person.add_persons(name='111', age=21)
+print(person)
+person.add_persons(name='222', age=21)
+person.add_persons(name='333', age=21)
+person.add_persons(name='444', age=21)
+
+for person in person:
+    print(person)
