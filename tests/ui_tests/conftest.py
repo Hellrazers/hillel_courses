@@ -36,3 +36,12 @@ def auth_ui(page: Page) -> Page:
     login_page.login_in_to_account(email_str, password_str)
     expect(login_page.notify_locator).to_have_text('You have been successfully logged in')
     yield page
+
+@pytest.fixture()
+def delete_car(api):
+    list_to_delete = []
+    yield list_to_delete
+    if list_to_delete:
+        api.delete(
+            url=f'https://qauto.forstudy.space/api/cars/{list_to_delete[0].get('id')}'
+        )
